@@ -1,1 +1,67 @@
-function sleep(a){var b=new Date().getTime();while(new Date().getTime()-b<a){}}function try_load_img(d,c,e){var a={};if(!a.inUse){a.status="unchecked";a.inUse=true;a.callback=e;a.ip=d;var b=a;a.img=new Image();a.img.onload=function(){b.inUse=false;b.callback(true,b.ip)};a.img.onerror=function(f){if(b.inUse){b.inUse=false;b.callback(false,b.ip)}};a.start=new Date().getTime();a.img.src="http://"+d+":"+SERVER_PORT.toString()+"/icon.png";a.timer=setTimeout(function(){if(b.inUse){b.inUse=false;b.callback(false,b.ip)}},c)}}describe("Network JS API",function(){var l=0;var d="";var a="";var k="";var n="";var s="";var f="";var p="";var b="";var t="";var h="";function e(w,v,y,x){d=w;a=v;k="http://"+w+":"+v.toString();n="https://"+y+":"+x.toString();s=k+"/test_methods";f=k+"/download_image";p=k+"/download_image_auth";b=k+"/upload_text_file";t=k+"/upload_text_file_auth";h=n+"/test_methods"}e(SERVER_HOST,SERVER_PORT,SECURE_HOST,SECURE_PORT);var g=Rho.RhoFile.join(Rho.Application.userFolder,"images");Rho.RhoFile.makeDir(g);var j=90000;var c=10000;var o=0;var m="";var q="";var r=function(v){o+=1;m=v.connectionInformation;q=v.failureMessage;Rho.Log.info("detectConnectionCallback, count = "+o.toString()+"failureMsg: "+q,"net_spec")};beforeEach(function(){o=0;m="";q=""});afterEach(function(){var v=function(){console.log("Network callback")};Rho.Network.stopDetectingConnection(v)});function u(v){var w=new Date().getTime();while(new Date().getTime()-w<v){}}function i(y,x,z){var v={};if(!v.inUse){v.status="unchecked";v.inUse=true;v.callback=z;v.ip=y;var w=v;v.img=new Image();v.img.onload=function(){w.inUse=false;w.callback(true,w.ip)};v.img.onerror=function(A){if(w.inUse){w.inUse=false;w.callback(false,w.ip)}};v.start=new Date().getTime();v.img.src="http://"+y+":"+SERVER_PORT.toString()+"/icon.png";v.timer=setTimeout(function(){if(w.inUse){w.inUse=false;w.callback(false,w.ip)}},x)}}describe("Network JS API",function(){var F=0;var y="";var v="";var E="";var H="";var M="";var A="";var J="";var w="";var N="";var C="";function z(P,O,R,Q){y=P;v=O;E="http://"+P+":"+O.toString();H="https://"+R+":"+Q.toString();M=E+"/test_methods";A=E+"/download_image";J=E+"/download_image_auth";w=E+"/upload_text_file";N=E+"/upload_text_file_auth";C=H+"/test_methods"}z(SERVER_HOST,SERVER_PORT,SECURE_HOST,SECURE_PORT);var B=Rho.RhoFile.join(Rho.Application.userFolder,"images");Rho.RhoFile.makeDir(B);var D=90000;var x=10000;var I=0;var G="";var K="";var L=function(O){I+=1;G=O.connectionInformation;K=O.failureMessage;Rho.Log.info("detectConnectionCallback, count = "+I.toString()+"failureMsg: "+K,"net_spec")};beforeEach(function(){I=0;G="";K=""});afterEach(function(){var O=function(){console.log("Network callback")};Rho.Network.stopDetectingConnection(O)});xit("VT293-0012 | platform",function(){function O(){for(var P=0;P<1001;P++){console.log(Rho.System.platform)}}runs(function(){O()});runs(function(){})});it("VT293-0014 | File test",function(){function O(){for(var Q=0;Q<1001;Q++){var R=Rho.RhoFile.join(Rho.Application.userFolder,"/images/myfile.txt");var P=new Rho.RhoFile(R,Rho.RhoFile.OPEN_FOR_WRITE);P.write("This is test");P.read(R);P.close();Rho.RhoFile.deleteFile(R);console.log("Test Nadaf")}}runs(function(){O()})})})});
+
+
+describe('Network JS API', function() {
+   
+
+    
+
+    xit('VT293-0012 | platform', function() {
+					function sleeptest(){
+							for (var i = 0; i < 1001; i++) { 
+								console.log(Rho.System.platform);
+								
+							}
+						}
+
+       
+       runs( function() {
+     
+            sleeptest();
+            
+        } );
+       
+        runs(function() {
+
+        });
+       
+    });
+	
+	it('VT293-0014 | File test', function() {
+				function sleepfiletest()
+					{
+						for (var i = 0; i < 1001; i++) 
+						{   //alert("0");
+							var fname = Rho.RhoFile.join(Rho.Application.userFolder,"/images/myfile.txt");
+                            //alert("1");
+							var file = new Rho.RhoFile(fname, Rho.RhoFile.OPEN_FOR_WRITE);
+                            //alert("2");
+							file.write("This is test");
+							 //alert("2.1");
+							file.read(5);
+                            //alert("3");
+							 file.close();
+							Rho.RhoFile.deleteFile(fname);
+							 console.log("Test Nadaf");
+							 //alert(fname);
+							
+						}
+					}
+
+       
+       runs( function() {
+     
+            sleepfiletest();
+            
+        } );
+       
+
+
+
+       
+	});
+
+
+	
+});
+
+       
